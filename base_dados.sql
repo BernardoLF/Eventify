@@ -7,11 +7,6 @@ CREATE TABLE roles (
     nome VARCHAR(50) NOT NULL UNIQUE
 );
 
-INSERT INTO roles (nome) VALUES
-('organizador'),
-('participante'),
-('admin');
-
 -- Tabela para users
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,7 +17,7 @@ CREATE TABLE users (
     FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
-
+-- Tabela para eventos
 CREATE TABLE eventos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
@@ -34,6 +29,7 @@ CREATE TABLE eventos (
     FOREIGN KEY (id_organizador) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- Tabela de registos
 CREATE TABLE registos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_evento INT NOT NULL,
@@ -43,17 +39,19 @@ CREATE TABLE registos (
     FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
 );
 
-
+-- Iserir Dados
 INSERT INTO users (nome, email, password, role_id) VALUES
 ('Admin Organizer', 'admin@events.com', 'hashed_password1', 1),  
 ('John Participant', 'john@events.com', 'hashed_password2', 2);  
 
+INSERT INTO roles (nome) VALUES
+('organizador'),
+('participante'),
+('admin');
 
 INSERT INTO eventos (nome, descricao, data, loc, capacidade, id_organizador) VALUES
 ('Tech Conference 2024', 'A conference about the latest in technology.', '2024-12-15', 'Tech Hall', 100, 1),
 ('Music Festival 2024', 'A vibrant music festival for all music lovers.', '2024-12-20', 'Festival Grounds', 200, 1);
-
-
 
 INSERT INTO registos (id_evento, id_user) VALUES
 (1, 2),
