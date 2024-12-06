@@ -2,6 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style_registo_login.css">
     <title>Registo</title>
 </head>
 <body>

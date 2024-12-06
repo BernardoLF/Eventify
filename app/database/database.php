@@ -3,7 +3,7 @@
 $host = 'localhost';
 $db   = 'controlo_eventos';
 $user = 'root';
-$pass = 'Messi8';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

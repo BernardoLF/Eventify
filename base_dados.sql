@@ -33,25 +33,26 @@ CREATE TABLE eventos (
 CREATE TABLE registos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_evento INT NOT NULL,
-    id_user INT NOT NULL, -- Nome ajustado para consistência com outras tabelas
-    data_registo TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Nome ajustado para consistência com snake_case
+    id_user INT NOT NULL, 
+    data_registo TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     FOREIGN KEY (id_evento) REFERENCES eventos(id) ON DELETE CASCADE,
     FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Iserir Dados
-INSERT INTO users (nome, email, password, role_id) VALUES
-('Admin Organizer', 'admin@events.com', 'hashed_password1', 1),  
-('John Participant', 'john@events.com', 'hashed_password2', 2);  
-
 INSERT INTO roles (nome) VALUES
 ('organizador'),
 ('participante'),
 ('admin');
 
+INSERT INTO users (nome, email, password, role_id) VALUES
+('Organizador', 'org@exemplo.com', '123', 1),  
+('Participante', 'part@exemplo.com', '456', 2),
+('Admin', 'admin@exemplo.com', '789', 3);
+
 INSERT INTO eventos (nome, descricao, data, loc, capacidade, id_organizador) VALUES
-('Tech Conference 2024', 'A conference about the latest in technology.', '2024-12-15', 'Tech Hall', 100, 1),
-('Music Festival 2024', 'A vibrant music festival for all music lovers.', '2024-12-20', 'Festival Grounds', 200, 1);
+('Conferencia Tecnologia 2024', 'Conderencia sobre tecnologia.', '2024-12-15', 'Tech Hall', 100, 1),
+('Festical de Musica 2024', 'Para amantes de meusica.', '2024-12-20', 'Festival Grounds', 200, 1);
 
 INSERT INTO registos (id_evento, id_user) VALUES
 (1, 2),
