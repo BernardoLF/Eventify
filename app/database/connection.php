@@ -10,7 +10,7 @@ class Connection{
                 self::$instance = new PDO(
                     dsn: 'mysql:host=localhost; dbname=controlo_eventos',
                     username: 'root',
-                    password: 'ShadowKnight1305+',
+                    password: 'Messi8',
                     options: [
                         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC

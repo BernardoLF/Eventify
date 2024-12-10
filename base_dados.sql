@@ -39,6 +39,20 @@ CREATE TABLE registos (
     FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- View para ver o numero de inscritos por evento
+CREATE VIEW view_inscritos_eventos AS
+SELECT 
+    e.id AS id_evento,
+    e.nome AS nome_evento,
+    COUNT(r.id) AS numero_inscritos
+FROM 
+    eventos e
+LEFT JOIN 
+    registos r ON e.id = r.id_evento
+GROUP BY 
+    e.id, e.nome;
+
+
 -- Iserir Dados
 INSERT INTO roles (nome) VALUES
 ('organizador'),
