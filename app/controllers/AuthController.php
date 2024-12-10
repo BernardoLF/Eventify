@@ -1,15 +1,10 @@
 <?php
 
-require_once '../app/models/User.php';
+require_once '../app/models/UserModel.php';
 
 class AuthController
 {
     private $user;
-
-    public function __construct($pdo)
-    {
-        $this->user = new User($pdo);
-    }
 
     public function register()
     {
@@ -25,6 +20,8 @@ class AuthController
                 echo "Erro ao registar.";
             }
         }
+
+        require_once '../app/views/register.php';
     }
 
     public function login()
@@ -50,6 +47,8 @@ class AuthController
             echo "Credenciais inválidas.";
         }
     }
+
+    require_once '../app/views/login.php';
 }
 
 }
