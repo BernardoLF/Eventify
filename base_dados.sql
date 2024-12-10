@@ -23,11 +23,23 @@ CREATE TABLE eventos (
     nome VARCHAR(200) NOT NULL,
     descricao TEXT,
     data DATE NOT NULL,
+    horas TIME NOT NULL, 
     loc VARCHAR(255) NOT NULL,
     capacidade INT NOT NULL,
     id_organizador INT NOT NULL,
     FOREIGN KEY (id_organizador) REFERENCES users(id) ON DELETE CASCADE
 );
+
+/*
+-- Tabela das Imagens dos Eventos
+CREATE TABLE imagens_eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_evento INT NOT NULL,
+    imagem LONGBLOB, 
+    FOREIGN KEY (id_evento) REFERENCES eventos(id) ON DELETE CASCADE
+);
+*/
+
 
 -- Tabela de registos
 CREATE TABLE registos (
@@ -64,9 +76,10 @@ INSERT INTO users (nome, email, password, role_id) VALUES
 ('Participante', 'part@exemplo.com', '456', 2),
 ('Admin', 'admin@exemplo.com', '789', 3);
 
-INSERT INTO eventos (nome, descricao, data, loc, capacidade, id_organizador) VALUES
-('Conferencia Tecnologia 2024', 'Conderencia sobre tecnologia.', '2024-12-15', 'Tech Hall', 100, 1),
-('Festical de Musica 2024', 'Para amantes de meusica.', '2024-12-20', 'Festival Grounds', 200, 1);
+INSERT INTO eventos (nome, descricao, data, horas, loc, capacidade, id_organizador) VALUES
+('Conferencia Tecnologia 2024', 'Conferência sobre tecnologia.', '2024-12-15', '10:00:00', 'Tech Hall', 100, 1),
+('Festival de Musica 2024', 'Para amantes de música.', '2024-12-20', '18:00:00', 'Festival Grounds', 200, 1);
+
 
 INSERT INTO registos (id_evento, id_user) VALUES
 (1, 2),
