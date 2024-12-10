@@ -1,26 +1,28 @@
 <?php
 
+require_once '../app/database/connection.php';
+
 class User
 {
-    private $pdo;
+    private $db;
 
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
+    public function __construct(){
+        $this->db = Connection::getInstance();
     }
 
     public function register($nome, $email, $password)
     {
         
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        
-        $roleId = 2; 
-
         
         $sql = "INSERT INTO users (nome, email, password, role_id) VALUES (?, ?, ?, ?)";
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$nome, $email, $hashedPassword, $roleId]);
+        $stmt = $this->pdo->prepare(query: $sql);
+        return $stmt->execute(params: [
+            ':nome' => $nome, 
+            ':email' => $email, 
+            ':password' => $hashedPassword, 
+            $roleId
+        ]);
     }
 
     public function login($email, $password)

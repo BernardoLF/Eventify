@@ -1,5 +1,18 @@
 <?php
 
+return[
+    '' => [
+        'controller' => '',
+        'action' => ''
+    ],
+
+
+]
+
+?>
+
+<?php
+
 require_once __DIR__ . '/../../controllers/AuthController.php';
 require_once __DIR__ . '/../../database/database.php';
 
@@ -19,3 +32,4 @@ if ($uri === '/login' && $method === 'GET') {
 } else {
     echo "Página não encontrada.";
 }
+?>

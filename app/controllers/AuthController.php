@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../models/User.php';
+require_once '../app/models/User.php';
 
 class AuthController
 {
@@ -9,16 +9,6 @@ class AuthController
     public function __construct($pdo)
     {
         $this->user = new User($pdo);
-    }
-
-    public function showLogin()
-    {
-        require_once __DIR__ . '/../views/login.php';
-    }
-
-    public function showRegister()
-    {
-        require_once __DIR__ . '/../views/register.php';
     }
 
     public function register()
