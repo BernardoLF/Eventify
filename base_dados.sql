@@ -13,7 +13,7 @@ CREATE TABLE users (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role_id INT NOT NULL,
+    role_id INT NOT NULL DEFAULT 2, 
     FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 

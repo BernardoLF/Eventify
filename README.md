@@ -72,3 +72,9 @@
 
 3. **Administradores**:
    - Permissões adicionais: Têm acesso a uma lista de todos os utilizadores para poder alterar o seu cargo.
+
+---
+
+## **URL do Alojamento**
+
+**[Eventify](http://bernardopedro.000.pe/)**
