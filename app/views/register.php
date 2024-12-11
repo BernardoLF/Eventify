@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Registar-se</h2>
-    <form action="/register" method="POST">
+    <form action="/login" method="POST">
         <div>
             <label for="nome">Nome Completo:</label>
             <input type="text" id="nome" name="nome" required>
@@ -22,6 +22,6 @@
         </div>
         <button type="submit">Registrar</button>
     </form>
-    <p>Já tem uma conta? <a href="/login">Faça login aqui</a></p>
+    <p>Já tem uma conta? <a href="/">Faça login aqui</a></p>
 </body>
 </html>

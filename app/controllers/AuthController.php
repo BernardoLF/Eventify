@@ -1,20 +1,20 @@
 <?php
 
-require_once '../app/models/UserModel.php';
+require_once '../app/models/AuthModel.php';
 
-class AuthController
-{
+class AuthController{
+    
     private $user;
 
-    public function register()
-    {
+    public function register(){
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome = $_POST['nome'];
             $email = $_POST['email'];
             $password = $_POST['password'];
 
             if ($this->user->register($nome, $email, $password)) {
-                header('Location: /login');
+                header('Location: /');
                 exit();
             } else {
                 echo "Erro ao registar.";
@@ -24,31 +24,31 @@ class AuthController
         require_once '../app/views/register.php';
     }
 
-    public function login()
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+    public function login(){
 
-        $user = $this->user->login($email, $password);
+        
 
-        if ($user) {
-            session_start();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
-            $_SESSION['user'] = $user;
+            $user = $this->user->login($email, $password);
 
-            $role = $this->user->getRole($user['role_id']);
+            if ($user) {
+                session_start();
 
-            $_SESSION['role'] = $role;
+                $_SESSION['user'] = $user;
 
-            header('Location: /dashboard');
-            exit();
-        } else {
-            echo "Credenciais inválidas.";
+                $role = $this->user->getRole($user['role_id']);
+
+                $_SESSION['role'] = $role;
+
+            } else {
+                echo "Credenciais inválidas.";
+            }
         }
-    }
 
-    require_once '../app/views/login.php';
-}
+        require_once '../app/views/login.php';
+    }
 
 }

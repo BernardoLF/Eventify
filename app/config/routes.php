@@ -1,34 +1,34 @@
 <?php
 
 return[
+    '' => [
+        'controller' => 'AuthController',
+        'action' => 'login'
+    ],
     'register' => [
         'controller' => 'AuthController',
         'action' => 'register'
     ],
-    'login' => [
-        'controller' => 'AuthController',
-        'action' => 'login'
-    ],
     'dashboard' => [
         'controller' => 'dashboardController',
-        'action' => ''
+        'action' => 'dashboard'
     ],
-    'Event' => [
+    'event' => [
         'controller' => 'EventController',
-        'action' => ''
+        'action' => 'event'
     ],
-    'NewEvent' => [
+    'newEvent' => [
         'controller' => 'NewEventController',
-        'action' => ''
+        'action' => 'newEvent'
     ],
-    'Perfil' => [
+    'perfil' => [
         'controller' => 'perfilController',
-        'action' => ''
+        'action' => 'perfil'
     ],
-    'UserList' => [
+    'userList' => [
         'controller' => 'UserListController',
-        'action' => ''
-    ],
+        'action' => 'users'
+    ]
 ]
 
 ?>
