@@ -6,7 +6,7 @@ class perfilController{
     public function perfil(){
 
 
-        require_once '../app/views/perfil.php';
+        require_once './app/views/perfil.php';
     }
 }
 

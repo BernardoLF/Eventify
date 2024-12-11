@@ -7,7 +7,7 @@ class dashboardController{
 
         
 
-        require_once '../app/views/dashboard.php';
+        require_once './app/views/dashboard.php';
     }
 
 }

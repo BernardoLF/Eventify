@@ -10,11 +10,11 @@
     <form action="/dashboard" method="POST">
         <div>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="emailUser" required>
         </div>
         <div>
             <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="passwordUser" required>
         </div>
         <button type="submit">Entrar</button>
     </form>
