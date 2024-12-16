@@ -10,8 +10,8 @@ return[
         'action' => 'register'
     ],
     'dashboard' => [
-        'controller' => 'dashboardController',
-        'action' => 'dashboard'
+        'controller' => 'DashboardController',
+        'action' => 'index'
     ],
     'event' => [
         'controller' => 'EventController',
@@ -22,7 +22,7 @@ return[
         'action' => 'newEvent'
     ],
     'perfil' => [
-        'controller' => 'perfilController',
+        'controller' => 'PerfilController',
         'action' => 'perfil'
     ],
     'userList' => [

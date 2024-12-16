@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once './app/models/AuthModel.php';
 
@@ -104,7 +105,6 @@ class AuthController{
                 session_start();
                 $_SESSION['email'] = $email;
                 $_SESSION['nome'] = $loginSucesso['nome'];
-                $utilizador = $_SESSION['nome'];
                 
                 header('Location: /dashboard');
                 exit;

@@ -7,7 +7,7 @@
 </head>
 <body>
     
-<h1>Olá, <?php echo $utilizador ?? 'Utilizador'; ?>!</h1>
+<h1>Olá, <?php echo $_SESSION['nome'] ?? 'Utilizador'; ?>!</h1>
 <p>Bem-vindo ao Eventify</p>
 
 </body>
