@@ -7,5 +7,8 @@
 </head>
 <body>
     
+<h1>Olá, <?php echo $utilizador ?? 'Utilizador'; ?>!</h1>
+<p>Bem-vindo ao Eventify</p>
+
 </body>
 </html>

@@ -12,6 +12,8 @@ class Auth{
 
     public function insertUser($nome, $email, $password): bool{
 
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $sql = "INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)";
 
         $stmt = $this->db->prepare(query: $sql);
@@ -19,22 +21,29 @@ class Auth{
         return $stmt ->execute(params: [
             ':nome' => $nome,
             ':email' => $email,
-            ':password' => $password
+            ':password' => $hashedPassword
         ]);
     }
 
-    public function getUser($email, $password): array{
-
-        $sql = "SELECT email FROM users WHERE email = $user AND password = $pass";
+    public function verificarLogin($email, $password): ?array {    
+        
+        $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            return $user;
+        if (!$user) {
+            return null; // Usuário não encontrado
         }
+        
+        // Verificação explícita da senha
+        $senhaCorreta = password_verify($password, $user['password']);
+            if (!$senhaCorreta) {
+                return null;
 
-        return ['error' => 'Credenciais inválidas']; // Retorna um array com um erro
+            }
+
+            return ['nome' => $user['nome'], 'autenticado' => true]; // Retorna o nome e status de autenticação
     }
 
     public function getRole($roleId)

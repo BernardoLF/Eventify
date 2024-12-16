@@ -28,11 +28,6 @@ return[
     'userList' => [
         'controller' => 'UserListController',
         'action' => 'users'
-    ],
-    'store' => [
-        'controller' => 'AuthController',
-        'action' => 'store'
     ]
 ]
-
 ?>

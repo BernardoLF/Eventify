@@ -7,19 +7,22 @@
 </head>
 <body>
     <h2>Registar-se</h2>
-    <form action="/store" method="POST">
+    <form method="POST">
         <div>
             <label>Nome Completo:</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome" placeholder="Introduza o seu nome" required>
         </div>
         <div>
             <label>Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="Introzuda o seu email" required>
         </div>
         <div>
             <label>Senha:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="Introduza uma password" required>
         </div>
+        <?php if(isset($error)): ?>
+            <p style="color:red;font-size:14px"><?php echo $error; ?></p>
+        <?php endif; ?>
         <button type="submit">Registrar</button>
     </form>
     <p>Já tem uma conta? <a href="/">Faça login aqui</a></p>
