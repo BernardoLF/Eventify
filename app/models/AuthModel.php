@@ -18,7 +18,7 @@ class Auth{
 
         $stmt = $this->db->prepare(query: $sql);
 
-        return $stmt ->execute(params: [
+        return $stmt->execute(params: [
             ':nome' => $nome,
             ':email' => $email,
             ':password' => $hashedPassword

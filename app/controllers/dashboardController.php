@@ -7,7 +7,7 @@ class dashboardController {
     public function index() {
         // Verificar se o usuário está autenticado
         if (!isset($_SESSION['email'])) {
-            header('Location: /login'); // Redireciona para a página de login se não estiver autenticado
+            header('Location: /'); // Redireciona para a página de login se não estiver autenticado
             exit;
         }
 

@@ -15,10 +15,10 @@ return[
     ],
     'event' => [
         'controller' => 'EventController',
-        'action' => 'event'
+        'action' => 'index'
     ],
     'newEvent' => [
-        'controller' => 'NewEventController',
+        'controller' => 'EventController',
         'action' => 'newEvent'
     ],
     'perfil' => [

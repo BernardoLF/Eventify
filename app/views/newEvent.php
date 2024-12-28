@@ -2,30 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/new_event.css">
     <title>Document</title>
+    <script>
+        function updateEndDate() {
+            // Obtém a data selecionada no campo de início
+            const dataInicio = document.getElementById('startDate').value;
+            // Define a data mínima do campo de fim para ser igual ou maior
+            document.getElementById('dataFim').min = startDate;
+        }
+    </script>
 </head>
+
 <body>
 
-    <form action="/dashboard">
+    <form method="post" enctype="multipart/form-data">
     <h1>Criar Evento</h1>
 
-    <label for="titulo">Título do Evento:</label>
-    <input type="text" id="titulo" name="titulo" required>
+    <div>
+        <div class="contents" style="margin-right: 25px;">
+            <label for="titulo" >Título do Evento:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Introduza o nome do evento" style="width:25vh;" required>
+        </div>
+        <div class="contents">
+            <label for="capacidade">Capacidade:</label>
+            <input type="number" id="capacidade" name="capacidade" placeholder="Capacidade" style="width: 12vh"required>
+        </div>
+    </div>
+        
+    <div>
+        <div class="contents margin">
+            <label for="dataInicio">Data início do Evento:</label>
+            <input type="date" id="data" class="data" name="dataInicio" required min="<?php echo date('Y-m-d') ?>" onkeydown="return false;">
+        </div>
 
-    <label for="data">Data do Evento:</label>
-    <input type="date" id="data" name="data" required>
+        <div class="contents">
+            <label for="dataFim">Data Fim do Evento:</label>
+            <input type="date" id="data" class="data" name="dataFim" required min="<?php echo date('Y-m-d'); ?>" onkeydown="return false;" oninput="this.setAttribute('min', document.getElementById('dataInicio').value);">
+        </div>
+    </div>
+ 
+    <div>
+        <div class="contents margin">
+            <label for="hora">Hora Abertura:</label>
+            <input type="time" id="hora" class="hora" name="horaInicio" step="60" required>
+        </div>
 
-    <label for="hora">Hora do Evento:</label>
-    <input type="time" id="hora" name="hora" required>
-
+        <div class="contents">
+            <label for="hora">Hora Encerramento:</label>
+            <input type="time" id="hora" class="hora" name="horaFim" step="60" required>
+        </div>
+    </div>
+        
+    
+    <label for="localizacao" >Morada do Evento:</label>
+    <input type="text" id="localizacao" name="localizacao" placeholder="Introduza a morada" style="margin-bottom:20px; width:40vh" required>
+     
     <label for="descricao">Descrição do Evento:</label>
-    <textarea id="descricao" name="descricao" rows="5" required></textarea>
-
+    <textarea id="descricao" name="descricao" style="width: 403px; height: 52px; resize: none; overflow: hidden; margin-bottom:20px" maxlength="215" placeholder="Introduza a descrição do evento"required></textarea>
+   
     <label for="imagem">Imagem do Evento:</label>
-    <input type="file" id="imagem" name="imagem" accept="image/*" required>
-
-    <button type="submit">Criar Evento</button>
+    <input type="file" id="imagem" name="imagem" required>    
+    
+    <button type="submit" name="acao">Criar Evento</button>
     </form>
+    <script>
+        document.getElementByName('dataInicio').addEventListener('change', function() {
+            document.getElementByName('dataFim').setAttribute('min', this.value);
+        });
+    </script>
 </body>
 </html>

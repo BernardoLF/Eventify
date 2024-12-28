@@ -17,8 +17,9 @@
         <div class="eventos-container">
             <?php foreach ($eventos as $evento): ?>
                 <div class="evento">
-                    <h3><?= htmlspecialchars($evento['nome']); ?></h3>
-                    <p class="data"><?= htmlspecialchars($evento['data']); ?></p>
+                    <h3><?= htmlspecialchars($evento['titulo']); ?></h3>
+                    <img src='./images/<?= htmlspecialchars($evento['imagem']); ?>' alt="">
+                    <p class="data"><?= htmlspecialchars($evento['data_inicio']); ?></p>
                     <p><?= htmlspecialchars($evento['descricao']); ?></p>
                 </div>
             <?php endforeach; ?>
