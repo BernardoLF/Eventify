@@ -10,7 +10,7 @@ class Event {
         $this->db = Connection::getInstance();
     }
 
-    public function getEvent(){
+    public function getEvent($id){
 
     }
 

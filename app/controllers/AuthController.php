@@ -105,6 +105,7 @@ class AuthController{
                 session_start();
                 $_SESSION['email'] = $email;
                 $_SESSION['nome'] = $loginSucesso['nome'];
+                $_SESSION['id'] = (int)$loginSucesso['id'];
                 
                 header('Location: /dashboard');
                 exit;

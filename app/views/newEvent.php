@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/new_event.css">
     <title>Document</title>
-    <script>
-        function updateEndDate() {
-            // Obtém a data selecionada no campo de início
-            const dataInicio = document.getElementById('startDate').value;
-            // Define a data mínima do campo de fim para ser igual ou maior
-            document.getElementById('dataFim').min = startDate;
-        }
-    </script>
+   
 </head>
 
 <body>
 
+    <header>
+        <nav>
+            <ul>
+                <?php if ($_SESSION['role_id'] === 3): ?>
+                    <li><a href="dashboard">Eventos</a></li>
+                    <li><a href="#">Novo Evento</a></li>
+                    <li><a href="utilizadores">Utilizadores</a></li>
+                <?php else: ?>
+                    <li><a href="dashboard">Eventos</a></li>
+                    <li><a href="#">Novo Evento</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>  
+    </header>
+
+    <div class="body_div">
     <form method="post" enctype="multipart/form-data">
     <h1>Criar Evento</h1>
 
@@ -33,12 +42,12 @@
     <div>
         <div class="contents margin">
             <label for="dataInicio">Data início do Evento:</label>
-            <input type="date" id="data" class="data" name="dataInicio" required min="<?php echo date('Y-m-d') ?>" onkeydown="return false;">
+            <input type="date" id="dataInicio" class="data" name="dataInicio" required min="<?php echo date('Y-m-d') ?>" onkeydown="return false;">
         </div>
 
         <div class="contents">
             <label for="dataFim">Data Fim do Evento:</label>
-            <input type="date" id="data" class="data" name="dataFim" required min="<?php echo date('Y-m-d'); ?>" onkeydown="return false;" oninput="this.setAttribute('min', document.getElementById('dataInicio').value);">
+            <input type="date" id="dataFim" class="data" name="dataFim" required min="<?php echo date('Y-m-d'); ?>" onkeydown="return false;" oninput="this.setAttribute('min', document.getElementById('dataInicio').value);">
         </div>
     </div>
  
@@ -66,10 +75,12 @@
     
     <button type="submit" name="acao">Criar Evento</button>
     </form>
-    <script>
-        document.getElementByName('dataInicio').addEventListener('change', function() {
-            document.getElementByName('dataFim').setAttribute('min', this.value);
+    </div>
+        <script>
+            document.getElementById('dataInicio').addEventListener('change', function() {
+            document.getElementById('dataFim').setAttribute('min', this.value);
         });
     </script>
+
 </body>
 </html>

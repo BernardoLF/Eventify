@@ -5,12 +5,31 @@ require_once './app/models/EventModel.php';
 
 class EventController{
 
-    public function index(){
+    public function Event(){
+        
+        if (!isset($_SESSION['email'])) {
+            header('Location: /'); // Redireciona para a página de login se não estiver autenticado
+            exit;
+        }
 
-        require_once './app/views/Event.php';
+        $id = 0;
+        
+        // Aqui você pode usar o $id conforme necessário
+        $eventModel = new Event(); // Certifique-se de que o nome do modelo está correto
+        $evento = $eventModel->getEvent(id: $id); // Método para buscar o evento pelo ID
+    
+        require_once './app/views/event.php'; // Carrega a view do evento
     }
 
     public function newEvent(){
+
+        if (!isset($_SESSION['email'])) {
+            header('Location: /'); // Redireciona para a página de login se não estiver autenticado
+            exit;
+        } else if(!isset($_SESSION['role_id']) === 2){
+            header('Location: /dashboard');
+        }
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -70,6 +89,9 @@ class EventController{
                                     } catch (Exception $e) {
                                         // Tratar erro específico da inserção de data e hora
                                         var_dump("Ocorreu um erro ao atualizar." . $e->getMessage());
+                                        
+                                        
+                                        
                                         require_once './app/views/newEvent.php';
                                         return;
                                     }
@@ -79,6 +101,7 @@ class EventController{
                             } catch (Exception $e) {
                                 // Tratar erro específico da inserção de data e hora
                                 var_dump("Ocorreu um erro ao inserir a data e hora." . $e->getMessage());
+                                
                                 require_once './app/views/newEvent.php';
                                 return;
                             }
@@ -87,6 +110,7 @@ class EventController{
 
                     } catch (Exception $e) {
                         var_dump("Ocorreu um erro ao criar o evento: " . $e->getMessage());
+                        
                         require_once './app/views/newEvent.php';
                         return;
                     }
@@ -98,7 +122,7 @@ class EventController{
             }
 
         } else {
-        
+            
             require_once './app/views/newEvent.php';
 
         }

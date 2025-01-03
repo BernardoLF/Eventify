@@ -15,18 +15,14 @@ return[
     ],
     'event' => [
         'controller' => 'EventController',
-        'action' => 'index'
+        'action' => 'Event'
     ],
     'newEvent' => [
         'controller' => 'EventController',
         'action' => 'newEvent'
     ],
-    'perfil' => [
-        'controller' => 'PerfilController',
-        'action' => 'perfil'
-    ],
-    'userList' => [
-        'controller' => 'UserListController',
+    'utilizadores' => [
+        'controller' => 'UtilizadoresController',
         'action' => 'users'
     ]
 ]

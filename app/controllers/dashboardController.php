@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once './app/models/DashboardModel.php';
+require_once './app/models/UserModel.php';
 
 class dashboardController {
 
@@ -12,7 +13,18 @@ class dashboardController {
         }
 
         // Acessa o nome do usuário armazenado na sessão
-        $nomeUsuario = $_SESSION['nome'];
+        $nomeUtilizador = $_SESSION['nome'];
+        $id = $_SESSION['id'];
+
+        $userModel = new User();
+        $userData = $userModel->getUser($_SESSION['id']); // Método para pegar os dados do utilizador
+
+
+        if($userData){
+                
+            $_SESSION['role_id'] = (int)$userData['role_id'];
+
+        }
 
         // Instancia o modelo Dashboard e busca os eventos
         $dashboardModel = new Dashboard();

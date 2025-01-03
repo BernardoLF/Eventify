@@ -43,7 +43,7 @@ class Auth{
 
             }
 
-            return ['nome' => $user['nome'], 'autenticado' => true]; // Retorna o nome e status de autenticação
+            return ['nome' => $user['nome'], 'id' => $user['id'], 'autenticado' => true]; // Retorna o nome e status de autenticação
     }
 
     public function getRole($roleId)
