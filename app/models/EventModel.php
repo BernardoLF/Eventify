@@ -10,8 +10,23 @@ class Event {
         $this->db = Connection::getInstance();
     }
 
-    public function getEvent($id){
+    public function getEvent($id) {
 
+        $sql = "SELECT eventos.*, 
+                         data_hora.data_inicio AS data_inicio, 
+                         data_hora.data_encerramento AS data_encerramento, 
+                         data_hora.hora_abertura AS hora_abertura, 
+                         data_hora.hora_encerramento AS hora_encerramento
+                  FROM eventos
+                  LEFT JOIN data_hora ON eventos.id_days = data_hora.id
+                  WHERE eventos.id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function insertEvent($titulo, $capacidade, $localizacao, $descricao, $nome_imagem): int{

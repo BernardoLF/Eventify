@@ -3,22 +3,24 @@ session_start();
 
 require_once './app/models/EventModel.php';
 
-class EventController{
+class EventController {
 
-    public function Event(){
-        
+    public function Event($id) {
+        // Verifica se o usuário está autenticado
         if (!isset($_SESSION['email'])) {
             header('Location: /'); // Redireciona para a página de login se não estiver autenticado
             exit;
         }
 
-        $id = 0;
-        
-        // Aqui você pode usar o $id conforme necessário
-        $eventModel = new Event(); // Certifique-se de que o nome do modelo está correto
-        $evento = $eventModel->getEvent(id: $id); // Método para buscar o evento pelo ID
-    
-        require_once './app/views/event.php'; // Carrega a view do evento
+        if($id){
+            $eventModel = new Event();
+            $evento = $eventModel->getEvent(id: $id);
+
+        } else {
+            echo 'ID do evento não encontrado.';
+        }
+
+        include './app/views/event.php'; // Carrega a view do evento
     }
 
     public function newEvent(){

@@ -13,7 +13,7 @@ return[
         'controller' => 'DashboardController',
         'action' => 'index'
     ],
-    'event' => [
+    'event/(\d+)' => [
         'controller' => 'EventController',
         'action' => 'Event'
     ],

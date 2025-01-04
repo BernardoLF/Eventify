@@ -39,7 +39,7 @@
                 $eventoInativo = (strtotime($evento['data_encerramento'] . ' ' . $evento['hora_encerramento']) < time()) ? 'evento inativo' : 'evento'; 
                 ?>
                 
-                <a href='event?id=<?= htmlspecialchars($evento['id']); ?>' class="<?= $eventoInativo; ?>">
+                <a href='event/<?= htmlspecialchars($evento['id']); ?>' class="<?= $eventoInativo; ?>">
                 <div>
                     <h3><?= htmlspecialchars($evento['titulo']); ?></h3>
                     <img class="imagem" src='./images/<?= htmlspecialchars($evento['imagem']); ?>'>

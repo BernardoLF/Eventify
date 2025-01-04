@@ -10,16 +10,10 @@
     <div class="container">
         <h1><?php echo $evento['titulo']; ?></h1>
         <p><strong>Descrição:</strong> <?php echo $evento['descricao']; ?></p>
-        <p><strong>Data:</strong> <?php echo date('d/m/Y', strtotime($evento['data'])); ?></p>
-        <p><strong>Local:</strong> <?php echo $evento['local']; ?></p>
-        <p><strong>Organizador:</strong> <?php echo $evento['organizador']; ?></p>
+        <p><strong>Data:</strong> <?php echo date('d/m/Y', strtotime($evento['data_inicio'])); ?> - <?php echo date('d/m/Y', strtotime($evento['data_encerramento']));?></p>
+        <p><strong>Local:</strong> <?php echo $evento['localizacao']; ?></p>
         
-        <h2>Participantes</h2>
-        <ul>
-            <?php foreach ($evento['participantes'] as $participante): ?>
-                <li><?php echo $participante; ?></li>
-            <?php endforeach; ?>
-        </ul>
+        
         
         <a href="inscrever.php?id=<?php echo $evento['id']; ?>">Inscrever-se</a>
     </div>
