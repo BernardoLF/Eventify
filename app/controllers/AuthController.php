@@ -7,6 +7,11 @@ class AuthController{
 
     public function register(): void{
 
+        if (isset($_SESSION['email'])) {
+            header('Location: /dashboard'); // Redireciona para a página de login se não estiver autenticado
+            exit;
+        }
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $nome = trim($_POST['nome']);
             $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
@@ -92,6 +97,11 @@ class AuthController{
     }
 
     public function login(): void{
+
+        if (isset($_SESSION['email'])) {
+            header('Location: /dashboard'); // Redireciona para a página de login se não estiver autenticado
+            exit;
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = $_POST['password'];

@@ -18,9 +18,11 @@ class Dashboard {
                          data_hora.data_inicio AS data_inicio, 
                          data_hora.data_encerramento AS data_encerramento, 
                          data_hora.hora_abertura AS hora_abertura, 
-                         data_hora.hora_encerramento AS hora_encerramento
+                         data_hora.hora_encerramento AS hora_encerramento,
+                         categorias.nome as categoria
                   FROM eventos
                   LEFT JOIN data_hora ON eventos.id_days = data_hora.id
+                  LEFT JOIN categorias ON eventos.id_categoria = categorias.id 
                   ORDER BY data_inicio ASC"; 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();

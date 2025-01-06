@@ -1,0 +1,63 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    background-color: rgb(194, 194, 194);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra mais escura */
+}
+
+.imagem{
+    width: 90%;
+    height: 40vh;
+}
+
+.lado-esquerdo{
+    padding: 10px;
+    height: 100%;
+    width: 600px;
+}
+.lado-direito{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+}
+
+.btn-back {
+    position: relative; /* Permite o uso de top e left */
+    bottom: 15%; /* Ajuste a posição vertical conforme necessário */
+    right: 40%; /* Ajuste a posição horizontal conforme necessário */
+    padding: 10px 15px; /* Estilo do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+}
+
+.btn-back:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+input{
+    width: 8vh;
+}
+
+h1{
+    text-align: center;
+}

@@ -72,8 +72,7 @@ form {
     background: #fff;
     padding: 20px;
     margin: 20px 0;
-    width: 100%;
-    max-width: 400px;
+    width: fit-content;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -96,6 +95,19 @@ input {
     margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+
+select{
+    padding-left: 8px;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width:190px;
+}
+
+.categoria{
+    margin-left:25px;
 }
 
 .data{

@@ -16,9 +16,11 @@ class Event {
                          data_hora.data_inicio AS data_inicio, 
                          data_hora.data_encerramento AS data_encerramento, 
                          data_hora.hora_abertura AS hora_abertura, 
-                         data_hora.hora_encerramento AS hora_encerramento
+                         data_hora.hora_encerramento AS hora_encerramento,
+                         categorias.nome as categoria
                   FROM eventos
                   LEFT JOIN data_hora ON eventos.id_days = data_hora.id
+                  LEFT JOIN categorias ON eventos.id_categoria = categorias.id
                   WHERE eventos.id = :id";
 
         $stmt = $this->db->prepare($sql);
@@ -29,13 +31,23 @@ class Event {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function insertEvent($titulo, $capacidade, $localizacao, $descricao, $nome_imagem): int{
+    public function bilhete($quantidade, $id){
+         // Reduz a quantidade de bilhetes disponíveis
+         $sql = "UPDATE eventos SET capacidade = capacidade - :quantidade WHERE id = :id";
+         $stmt = $this->db->prepare($sql);
+         return $stmt->execute([
+         ':quantidade' => $quantidade,
+         ':id' => $id
+        ]);
+    }
+
+    public function insertEvent($titulo, $capacidade, $localizacao, $descricao, $nome_imagem, $categoria, $id_organizador): int{
 
         // Desativar as restrições de chave estrangeira
         $this->db->exec('SET FOREIGN_KEY_CHECKS=0;');
 
         // Inserir na tabela de eventos
-        $sql = 'INSERT INTO eventos (titulo, descricao, localizacao, capacidade, id_organizador, imagem) VALUES (:titulo, :descricao, :localizacao, :capacidade, 1, :imagem);';
+        $sql = 'INSERT INTO eventos (titulo, descricao, localizacao, capacidade, id_organizador, imagem, id_categoria) VALUES (:titulo, :descricao, :localizacao, :capacidade, :id_organizador, :imagem, :categoria);';
         
         // Executar a inserção na tabela de eventos
         $stmt = $this->db->prepare($sql);
@@ -45,6 +57,8 @@ class Event {
             ':localizacao' => $localizacao,
             ':descricao' => $descricao,
             ':imagem' => $nome_imagem,
+            ':id_organizador' => $id_organizador,
+            ':categoria' => $categoria
         ]);
 
         // Obter o último ID inserido

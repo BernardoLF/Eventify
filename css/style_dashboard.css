@@ -17,15 +17,10 @@ h4, h2 {
 .eventos-container {
     display: flex;
     flex-wrap: wrap; /* Permite que os eventos que não cabem em uma linha, passem para a próxima linha */
-    justify-content: space-between; /* Alinha os itens com espaçamento entre eles */
+    justify-content: space-evenly; /* Alinha os itens com espaçamento entre eles */
     gap: 20px; /* Espaçamento entre os itens */
     padding: 20px;
 }
-
-/* a{
-    text-decoration:none;
-    width: calc(33.333% - 20px); /* 3 itens por linha, com espaçamento */
-
 
 /* Estilo de cada evento */
 .evento {
@@ -103,6 +98,10 @@ img{
 
 ul li:hover{
     transform: scale(1.15);
+
+}
+h4{
+    margin-right: 6vh;
 }
 
 /* Responsividade - em telas pequenas, cada evento ocupa 100% da largura (1 item por linha) */
@@ -112,9 +111,6 @@ ul li:hover{
     }
 }
 
-h4{
-    margin-right: 6vh;
-}
 
 @media (max-width: 480px) {
     .evento {

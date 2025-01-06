@@ -16,9 +16,49 @@ class EventController {
             $eventModel = new Event();
             $evento = $eventModel->getEvent(id: $id);
 
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                $quantidade = $_POST['quantidade'];
+                $titulo = $evento['titulo'];
+                $email = $_SESSION['email'];
+
+                if ($quantidade <= 0){
+                    echo 'Quantidade deve ser 1 ou mais bilhetes';
+                } else {
+                    $resultado = $eventModel->bilhete(quantidade: $quantidade, id: $id);
+
+                    if($resultado){
+
+                        $corpoMensagem = <<<MSG
+                            Compra dos bilhetes do evento $titulo
+                            Comprou $quantidade bilhetes.
+
+                            Os bilhetes dão para todos os dias em que o evento decorre.
+
+                            Obrigado por comprar os bilhetes 
+                            
+                            Boas festas!
+                        MSG;
+
+                        $from = "testMail@testMail.eu";
+                        $to = "$email";
+                        $subject = "Confirmação da Venda de bilhetes - Eventify";
+                        $message = $corpoMensagem;   
+                        $headers = "From:" . $from;
+    
+                        mail($to,$subject,$message, $headers);
+
+
+                        header('Location: dashboard');
+                    }
+                }
+            }
+        
         } else {
             echo 'ID do evento não encontrado.';
         }
+
+        
 
         include './app/views/event.php'; // Carrega a view do evento
     }
@@ -43,6 +83,7 @@ class EventController {
             $horaFim = $_POST['horaFim'];
             $localizacao = trim($_POST['localizacao']);
             $descricao = trim($_POST['descricao']);
+            $categoria = $_POST['categoria'];
             
             // Verifica se o arquivo foi enviado
             if (isset($_FILES['imagem'])) { // Verifica se a chave 'imagem' existe
@@ -67,7 +108,7 @@ class EventController {
                         }
 
                         $eventModel = new Event();
-                        $resultado = $eventModel->insertEvent(titulo: $titulo, capacidade: $capacidade, localizacao: $localizacao, descricao: $descricao, nome_imagem: $nome_imagem);
+                        $resultado = $eventModel->insertEvent(titulo: $titulo, capacidade: $capacidade, localizacao: $localizacao, descricao: $descricao, nome_imagem: $nome_imagem, categoria: $categoria, id_organizador: $_SESSION['id']);
                         
                         if ($resultado) {
                             

@@ -31,6 +31,21 @@
 
     <?php if (!empty($eventos)): ?>
         <!-- Container para os eventos -->
+
+        <label style="padding-left: 25px" for="preferencias">Preferências:</label>
+        <select name="preferencias" id="preferencias">
+            <option value="0">-- Todos os Evento</option>
+            <option value="1">Educação e Carreira</option>
+            <option value="2">Arte e Cultura</option>
+            <option value="3">Desporto e Bem-estar</option>
+            <option value="4">Tecnologia e Inovação</option>
+            <option value="5">Empreendedorismo e Negócios</option>
+            <option value="6">Entretenimento e Lazer</option>
+            <option value="7">Comunidade e Solidariedade</option>
+            <option value="8">Ciência e Meio Ambiente</option>
+        </select>
+
+
         <div class="eventos-container">
             <?php foreach ($eventos as $evento): ?>
 
@@ -39,7 +54,7 @@
                 $eventoInativo = (strtotime($evento['data_encerramento'] . ' ' . $evento['hora_encerramento']) < time()) ? 'evento inativo' : 'evento'; 
                 ?>
                 
-                <a href='event/<?= htmlspecialchars($evento['id']); ?>' class="<?= $eventoInativo; ?>">
+                <a data-categoria="<?= htmlspecialchars($evento['id_categoria'])?>" href='event/<?= htmlspecialchars($evento['id']); ?>' class="<?= $eventoInativo; ?>">
                 <div>
                     <h3><?= htmlspecialchars($evento['titulo']); ?></h3>
                     <img class="imagem" src='./images/<?= htmlspecialchars($evento['imagem']); ?>'>
@@ -58,6 +73,21 @@
     <?php else: ?>
         <p>Não há eventos cadastrados no momento.</p>
     <?php endif; ?>
+
+    <script>
+        document.getElementById('preferencias').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var eventos = document.querySelectorAll('.eventos-container a');
+
+            eventos.forEach(function(evento) {
+                if (selectedValue == 0 || evento.getAttribute('data-categoria') == selectedValue) {
+                    evento.style.display = 'block'; // Mostra o evento
+                } else {
+                    evento.style.display = 'none'; // Oculta o evento
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

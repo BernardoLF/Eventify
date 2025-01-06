@@ -37,6 +37,20 @@
             <label for="capacidade">Capacidade:</label>
             <input type="number" id="capacidade" name="capacidade" placeholder="Capacidade" style="width: 12vh"required>
         </div>
+        <div class="contents categoria">
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="categoria" required>
+                <option value="0">-- Categoria do Evento</option>
+                <option value="1">Educação e Carreira</option>
+                <option value="2">Arte e Cultura</option>
+                <option value="3">Desporto e Bem-estar</option>
+                <option value="4">Tecnologia e Inovação</option>
+                <option value="5">Empreendedorismo e Negócios</option>
+                <option value="6">Entretenimento e Lazer</option>
+                <option value="7">Comunidade e Solidariedade</option>
+                <option value="8">Ciência e Meio Ambiente</option>
+            </select>
+        </div>
     </div>
         
     <div>

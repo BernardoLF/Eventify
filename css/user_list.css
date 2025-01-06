@@ -51,11 +51,14 @@ div{
 }
 
 thead{
-    background-color: #ffffff;
+    background-color: #e9dede;
     height: 2vh;
 }
 
 img{
     margin-left: 3%;
     width: 20px;
+}
+td{
+    background-color: #d3b7b7;
 }
