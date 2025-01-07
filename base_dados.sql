@@ -36,7 +36,7 @@ CREATE TABLE data_hora (
 -- Tabela para eventos
 CREATE TABLE eventos (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(200) NOT NULL,
+    titulo VARCHAR(200) NOT NULL,
     descricao TEXT,
     id_days int NOT NULL DEFAULT 0,
     localizacao VARCHAR(255) NOT NULL,
