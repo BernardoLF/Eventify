@@ -77,4 +77,4 @@
 
 ## **URL do Alojamento**
 
-**[Eventify](http://bernardopedro.000.pe/)**
+**[Eventify](http://bernardopedro.infinityfreeapp.com/)**
