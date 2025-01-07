@@ -49,7 +49,7 @@ class EventController {
                         mail($to,$subject,$message, $headers);
 
 
-                        header('Location: dashboard');
+                        header('Location: ../dashboard');
                     }
                 }
             }
