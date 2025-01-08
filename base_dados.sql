@@ -49,40 +49,11 @@ CREATE TABLE eventos (
     FOREIGN KEY (id_categoria) REFERENCES categorias(id)  
 );
 
-/*
--- Tabela das Imagens dos Eventos
-CREATE TABLE imagens_eventos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_evento INT NOT NULL,
-    imagem LONGBLOB, 
-    FOREIGN KEY (id_evento) REFERENCES eventos(id) ON DELETE CASCADE
-);
-*/
-
--- View para ver o número de inscritos por evento
-CREATE VIEW view_inscritos_eventos AS
-SELECT 
-    e.id AS id_evento,
-    e.nome AS nome_evento,
-    COUNT(r.id) AS numero_inscritos
-FROM 
-    eventos e
-LEFT JOIN 
-    registos r ON e.id = r.id_evento
-GROUP BY 
-    e.id, e.nome;
-
-
--- Inserir Dados
 -- Inserir dados na tabela roles
 INSERT INTO roles (nome) VALUES
 ('organizador'),
 ('participante'),
 ('admin');
-
--- Inserir dados na tabela users
-INSERT INTO users (nome, email, password, role_id) VALUES
-('Bernardo', 'bernardo@gmail.com', '', 3);
 
 -- Inserir categorias na tabela categorias
 INSERT INTO categorias (nome) VALUES
