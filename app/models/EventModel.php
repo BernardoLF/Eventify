@@ -7,11 +7,12 @@ class Event {
     private $db;
 
     public function __construct(){
+        // Inicializa a conexão com o banco de dados
         $this->db = Connection::getInstance();
     }
 
     public function getEvent($id) {
-
+        // SQL para buscar um evento específico pelo ID
         $sql = "SELECT eventos.*, 
                          data_hora.data_inicio AS data_inicio, 
                          data_hora.data_encerramento AS data_encerramento, 
@@ -23,35 +24,37 @@ class Event {
                   LEFT JOIN categorias ON eventos.id_categoria = categorias.id
                   WHERE eventos.id = :id";
 
+        // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            ':id' => $id
-        ]);
+        // Executa a consulta com o ID do evento
+        $stmt->execute([':id' => $id]);
 
+        // Retorna os dados do evento como um array associativo
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function bilhete($quantidade, $id){
-         // Reduz a quantidade de bilhetes disponíveis
-         $sql = "UPDATE eventos SET capacidade = capacidade - :quantidade WHERE id = :id";
-         $stmt = $this->db->prepare($sql);
-         return $stmt->execute([
-         ':quantidade' => $quantidade,
-         ':id' => $id
+        // Reduz a quantidade de bilhetes disponíveis para um evento
+        $sql = "UPDATE eventos SET capacidade = capacidade - :quantidade WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        // Executa a atualização da capacidade
+        return $stmt->execute([
+            ':quantidade' => $quantidade,
+            ':id' => $id
         ]);
     }
 
     public function insertEvent($titulo, $capacidade, $localizacao, $descricao, $nome_imagem, $categoria, $id_organizador): int{
-
-        // Desativar as restrições de chave estrangeira
+        // Desativa as restrições de chave estrangeira temporariamente
         $this->db->exec('SET FOREIGN_KEY_CHECKS=0;');
 
-        // Inserir na tabela de eventos
+        // SQL para inserir um novo evento
         $sql = 'INSERT INTO eventos (titulo, descricao, localizacao, capacidade, id_organizador, imagem, id_categoria) VALUES (:titulo, :descricao, :localizacao, :capacidade, :id_organizador, :imagem, :categoria);';
         
-        // Executar a inserção na tabela de eventos
+        // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute([
+        // Executa a inserção do evento
+        $stmt->execute([
             ':titulo' => $titulo,
             ':capacidade' => $capacidade,
             ':localizacao' => $localizacao,
@@ -61,22 +64,23 @@ class Event {
             ':categoria' => $categoria
         ]);
 
-        // Obter o último ID inserido
+        // Obtém o último ID inserido
         $lastId = $this->lastInsertId();
 
-        // Reativar as restrições de chave estrangeira
+        // Reativa as restrições de chave estrangeira
         $this->db->exec('SET FOREIGN_KEY_CHECKS=1;');
 
-        return $lastId; // Retorna o último ID inserido
+        // Retorna o último ID inserido
+        return $lastId;
     }
 
     public function insertDataHora($id, $dataInicio, $horaInicio, $dataFim, $horaFim): bool{
-
+        // SQL para inserir dados de data e hora para um evento
         $sql = 'INSERT INTO data_hora (id, data_inicio, data_encerramento, hora_abertura, hora_encerramento) VALUES (:id, :data_inicio, :data_fim, :hora_inicio, :hora_fim);';
         
-        // Executar a inserção na tabela de data_hora
+        // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
-
+        // Executa a inserção dos dados de data e hora
         return $stmt->execute([
             ':id' => $id,
             ':data_inicio' => $dataInicio,
@@ -84,30 +88,29 @@ class Event {
             ':hora_inicio' => $horaInicio,
             ':hora_fim' => $horaFim,
         ]);
-
     }
 
     public function updateEvent($id): bool{
-
+        // Desativa as restrições de chave estrangeira temporariamente
         $this->db->exec('SET FOREIGN_KEY_CHECKS=0;');
 
+        // SQL para atualizar o ID do dia associado a um evento
         $sql = 'UPDATE eventos SET id_days = :id WHERE id = :id';
 
+        // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
 
+        // Reativa as restrições de chave estrangeira
         $this->db->exec('SET FOREIGN_KEY_CHECKS=1;');
 
-        return $stmt->execute([
-            ':id' => $id
-        ]);
-
+        // Executa a atualização do evento
+        return $stmt->execute([':id' => $id]);
     }
 
     public function lastInsertId() {
-        // Supondo que você esteja usando PDO para interagir com o banco de dados
+        // Retorna o último ID inserido na tabela
         return $this->db->lastInsertId(); // Certifique-se de que $this->db é uma instância do PDO
     }
-
 }
 
 ?>

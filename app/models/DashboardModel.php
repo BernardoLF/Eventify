@@ -13,7 +13,7 @@ class Dashboard {
 
     // Método para buscar os eventos
     public function getEventos() {
-        // Corrigir para incluir dados da tabela 'data_hora' usando JOIN
+        // SQL para buscar eventos e dados relacionados da tabela 'data_hora' usando JOIN
         $sql = "SELECT eventos.*, 
                          data_hora.data_inicio AS data_inicio, 
                          data_hora.data_encerramento AS data_encerramento, 
@@ -24,12 +24,14 @@ class Dashboard {
                   LEFT JOIN data_hora ON eventos.id_days = data_hora.id
                   LEFT JOIN categorias ON eventos.id_categoria = categorias.id 
                   ORDER BY data_inicio ASC"; 
+        // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
+        // Executa a consulta
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna os eventos como um array associativo
+        // Retorna os eventos como um array associativo
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
 
-    
 }
 
 ?>

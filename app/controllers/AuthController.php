@@ -1,4 +1,5 @@
 <?php
+// Inicia a sessão
 session_start();
 
 require_once './app/models/AuthModel.php';
@@ -7,12 +8,15 @@ class AuthController{
 
     public function register(): void{
 
+        // Verifica se o usuário já está autenticado
         if (isset($_SESSION['email'])) {
             header('Location: /dashboard'); // Redireciona para a página de login se não estiver autenticado
             exit;
         }
 
+        // Verifica se o método de requisição é POST
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            // Captura e sanitiza os dados do formulário
             $nome = trim($_POST['nome']);
             $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
             $pass = trim($_POST['password']);
@@ -33,8 +37,9 @@ class AuthController{
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors[] = "Por favor, insira um email válido";
             }
+
             // Critérios de validação da senha
-        $requisitos = [
+            $requisitos = [
                 'especial' => preg_match('/[!@#$%^&*(),.?":{}|<>+]/', $pass),
                 'numero' => preg_match('/[0-9]/', $pass),
                 'maiuscula' => preg_match('/[A-Z]/', $pass),
@@ -51,6 +56,7 @@ class AuthController{
             if (!empty($requisitosNaoAtendidos)) {
                 $errors[] = "A senha deve conter:";
                 
+                // Adiciona mensagens de erro para requisitos não atendidos
                 if (!$requisitos['especial']) {
                     $errors[] = "- Pelo menos um caractere especial";
                 }
@@ -75,10 +81,12 @@ class AuthController{
                 return;
             }
 
+            // Tenta inserir o usuário no banco de dados
             try {
                 $authModel = new Auth();
                 $resultado = $authModel->insertUser(nome: $nome, email: $email, password: $pass);
                 
+                // Verifica se a inserção foi bem-sucedida
                 if ($resultado === true) {
                     session_start();
                     $_SESSION['success_message'] = "Conta criada com sucesso! Faça login para continuar.";
@@ -86,32 +94,38 @@ class AuthController{
                     exit;
                 }
             } catch (Exception $e) {
+                // Captura erros durante a inserção
                 $error = "Ocorreu um erro ao criar a conta. Por favor, tente novamente.";
                 require_once './app/views/register.php';
                 return;
             }
  
         } else {
+            // Se não for uma requisição POST, exibe o formulário de registro
             require_once './app/views/register.php';
         }
     }
 
     public function login(): void{
 
+        // Verifica se o usuário já está autenticado
         if (isset($_SESSION['email'])) {
             header('Location: /dashboard'); // Redireciona para a página de login se não estiver autenticado
             exit;
         }
 
+        // Verifica se o método de requisição é POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Captura os dados do formulário
             $password = $_POST['password'];
             $email = $_POST['email'];
 
+            // Verifica as credenciais do usuário
             $authModel = new Auth();
             $loginSucesso = $authModel->verificarLogin($email, $password);
 
+            // Se o login for bem-sucedido
             if ($loginSucesso) {
-                // Login bem sucedido
                 session_start();
                 $_SESSION['email'] = $email;
                 $_SESSION['nome'] = $loginSucesso['nome'];
@@ -120,11 +134,12 @@ class AuthController{
                 header('Location: /dashboard');
                 exit;
             } else {
-                // Login falhou
+                // Se o login falhar
                 $error = "Email ou senha incorretos";
                 require_once './app/views/login.php';
             }
         } else {
+            // Se não for uma requisição POST, exibe o formulário de login
             require_once './app/views/login.php';
         }
     }
