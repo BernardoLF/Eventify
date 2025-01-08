@@ -20,8 +20,7 @@ ul { /* Remove os marcadores da lista */
 
 ul li {
     list-style-type: none;
-    margin-left: 5vh;
-    margin-right: 5vh; /* Espaçamento entre os itens do menu */
+    margin: 0 5vh;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -61,4 +60,58 @@ img{
 }
 td{
     background-color: #d3b7b7;
+}
+
+@media (max-width: 700px) {
+    h4{
+        font-size:smaller ;
+    }
+
+    ul a {
+        font-size:smaller;
+    }
+
+    ul li{
+        margin: 0 4vh;
+    }
+}
+
+@media (max-width: 650px) {
+
+    ul li{
+        margin: 0 3vh;
+    }
+    
+}
+
+@media (max-width: 550px) {
+
+    ul{
+        padding-left:20px;
+    }
+    
+    ul li{
+        margin: 0 1.5vh;
+    }
+
+    td{
+        font-size:small ;
+    }
+    
+}
+
+@media (max-width: 450px) {
+
+    ul{
+        padding-left:10px;
+    }
+    
+    ul li{
+        margin: 0 0.7vh;
+    }
+
+    td{
+        font-size:small ;
+    }
+    
 }

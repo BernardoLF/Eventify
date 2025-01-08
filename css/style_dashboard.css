@@ -104,16 +104,106 @@ h4{
     margin-right: 6vh;
 }
 
-/* Responsividade - em telas pequenas, cada evento ocupa 100% da largura (1 item por linha) */
-@media (max-width: 768px) {
-    .evento {
-        width: calc(50% - 20px); /* 2 itens por linha em telas médias */
+@media (max-width: 1050px){
+    .evento{
+        width: calc(50% - 20px);
     }
 }
 
-
-@media (max-width: 480px) {
+/* Responsividade - em telas pequenas, cada evento ocupa 100% da largura (1 item por linha) */
+@media (max-width: 800px) {
     .evento {
-        width: 100%; /* 1 item por linha em telas muito pequenas */
+        width: calc(50% - 20px); /* 2 itens por linha em telas médias */
+        height: 40vh;
     }
+
+    img{
+    height: 20vh;
+    }
+    
+}
+
+@media (max-width: 700px) {
+    h4{
+        font-size:smaller ;
+    }
+
+    ul a {
+        font-size:smaller;
+    }
+
+    .evento{
+        height:35vh;
+    }
+
+    img{
+        height:15vh ;
+    }
+    ul li{
+        margin: 0 4vh;
+    }
+}
+
+@media (max-width: 650px) {
+
+    ul li{
+        margin: 0 3vh;
+    }
+
+    .evento h3{
+        font-size:medium;
+    }
+}
+
+@media (max-width: 600px){
+    .evento{
+        height: 30vh;
+    }
+
+    img{
+        height: 12vh;
+    }
+
+    .evento h3{
+        font-size:small ;
+    }
+}
+
+@media (max-width: 550px) {
+
+    ul{
+        padding-left:20px;
+    }
+    
+    ul li{
+        margin: 0 1.5vh;
+    }
+
+    td{
+        font-size:small ;
+    }
+
+    .evento {
+        width: 85%; /* 1 item por linha em telas muito pequenas */
+    }
+
+    img{
+        height: 14vh;
+    }
+}
+
+@media (max-width: 450px) {
+
+    ul{
+        padding-left:10px;
+    }
+    
+    ul li{
+        margin: 0 0.7vh;
+    }
+
+    td{
+        font-size:small ;
+    }
+    
 }

@@ -40,7 +40,7 @@
                             <?php echo htmlspecialchars($utilizador['role']); ?> 
                         </span>
                         <a href="#" onclick="toggleRoleForm(<?php echo $utilizador['id']; ?>)">
-                            <img src="./images/reescrever.png" alt="Reescrever">
+                            <img src="./icon/reescrever.png" alt="Reescrever">
                         </a>
                         <div id="roleForm-<?php echo $utilizador['id']; ?>" style="display:none;">
                             <form method="POST" onsubmit="return updateRoleDisplay(<?php echo $utilizador['id']; ?>)">

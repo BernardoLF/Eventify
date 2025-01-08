@@ -48,7 +48,6 @@ class EventController {
     
                         mail($to,$subject,$message, $headers);
 
-
                         header('Location: ../dashboard');
                     }
                 }
@@ -70,6 +69,19 @@ class EventController {
             exit;
         } else if(!isset($_SESSION['role_id']) === 2){
             header('Location: /dashboard');
+        }
+        
+        // Verifica o User-Agent para bloquear dispositivos com largura de tela inferior a 640px
+        if (preg_match('/Mobile|Android|iPhone|iPad|iPod/', $_SERVER['HTTP_USER_AGENT'])) {
+            // Redireciona para uma página de erro ou para a página inicial
+            header('Location: /dashboard'); // Altere para a URL desejada
+            exit;
+        }
+
+        if (preg_match('/Mobile|Android|iPhone|iPad|iPod|Tablet/', $_SERVER['HTTP_USER_AGENT'])) {
+            // Redireciona para uma página de erro ou para a página inicial
+            header('Location: /dashboard'); // Altere para a URL desejada
+            exit;
         }
 
 

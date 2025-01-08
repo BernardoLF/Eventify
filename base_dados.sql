@@ -49,16 +49,6 @@ CREATE TABLE eventos (
     FOREIGN KEY (id_categoria) REFERENCES categorias(id)  
 );
 
--- Tabela de registos
-CREATE TABLE registos (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_evento INT NOT NULL,
-    id_user INT NOT NULL, 
-    data_registo TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    FOREIGN KEY (id_evento) REFERENCES eventos(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
-);
-
 /*
 -- Tabela das Imagens dos Eventos
 CREATE TABLE imagens_eventos (

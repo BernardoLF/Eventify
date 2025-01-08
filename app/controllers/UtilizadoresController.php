@@ -17,7 +17,7 @@ class UtilizadoresController{
         $userModel = new User;
         $utilizadores = $userModel->getAllUsers();
 
-        require_once './app/views/UserList.php';
+        require_once './app/views/userList.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_POST['id'];
