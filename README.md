@@ -77,4 +77,5 @@
 
 ## **URL do Alojamento**
 
-**[Eventify](http://bernardopedro.infinityfreeapp.com/)**
+**[Eventify](http://bernardopedro.infinityfreeapp.com/)** 
+   Atenção: Se a página não for encontrar, retirar do link "/?i=1"
