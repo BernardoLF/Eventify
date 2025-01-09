@@ -12,13 +12,16 @@
         <nav>
             <ul>
                 <?php if ($_SESSION['role_id'] === 3): ?>
+                    <!-- Menu para Admin -->
                     <li><a href="#">Eventos</a></li>
                     <li><a href="newEvent">Novo Evento</a></li>
                     <li><a href="utilizadores">Utilizadores</a></li>
                 <?php elseif ($_SESSION['role_id'] === 1): ?>
+                    <!-- Menu para Organizador -->
                     <li><a href="#">Eventos</a></li>
                     <li><a href="newEvent">Novo Evento</a></li>
                 <?php else: ?>
+                    <!-- Menu para Utilizadores -->
                     <li><a href="#">Eventos</a></li>
                 <?php endif; ?>
             </ul>
@@ -45,7 +48,6 @@
             <option value="8">Ciência e Meio Ambiente</option>
         </select>
 
-
         <div class="eventos-container">
             <?php foreach ($eventos as $evento): ?>
 
@@ -60,6 +62,7 @@
                     <img class="imagem" src='./images/<?= htmlspecialchars($evento['imagem']); ?>'>
                     <p class="data">
                         <?php 
+                            // Formata as datas de início e encerramento
                             $dataInicio = new DateTime($evento['data_inicio']);
                             $dataEncerramento = new DateTime($evento['data_encerramento']);
                         ?>
@@ -75,11 +78,13 @@
     <?php endif; ?>
 
     <script>
+        // Adiciona um listener para o evento de mudança no seletor de preferências
         document.getElementById('preferencias').addEventListener('change', function() {
             var selectedValue = this.value;
             var eventos = document.querySelectorAll('.eventos-container a');
 
             eventos.forEach(function(evento) {
+                // Mostra ou oculta eventos com base na preferência selecionada
                 if (selectedValue == 0 || evento.getAttribute('data-categoria') == selectedValue) {
                     evento.style.display = 'block'; // Mostra o evento
                 } else {

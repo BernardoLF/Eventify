@@ -115,3 +115,15 @@ td{
     }
     
 }
+
+@media (max-width:360px){
+    h4{
+        margin-right:10px;
+    }
+    ul a{
+        font-size:x-small ;
+    }
+    ul li{
+        margin:0 1.3vh;
+    }
+}

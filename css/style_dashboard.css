@@ -207,3 +207,18 @@ h4{
     }
     
 }
+
+@media (max-width:360px){
+    .evento h3{
+        margin-top:0;
+    }
+    h4{
+        margin-right:10px;
+    }
+    ul a{
+        font-size:x-small ;
+    }
+    ul li{
+        margin:0 1.3vh;
+    }
+}
