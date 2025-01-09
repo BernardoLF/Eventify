@@ -24,6 +24,10 @@ return[
     'utilizadores' => [
         'controller' => 'UtilizadoresController', // Controlador para gerenciamento de usuários
         'action' => 'users' // Ação que lista os usuários
+    ],
+    'logout' => [ 
+        'controller' => 'DashboardController',
+        'action' => 'logout'
     ]
 ]
 ?>
