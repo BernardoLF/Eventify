@@ -16,16 +16,16 @@
                     <li><a href="#">Eventos</a></li>
                     <li><a href="newEvent">Novo Evento</a></li>
                     <li><a href="utilizadores">Utilizadores</a></li>
-                    <li><a href="/logout" class="btnLogout">Sair</a></li>
+                    <li><a href="/logout">Sair</a></li>
                 <?php elseif ($_SESSION['role_id'] === 1): ?>
                     <!-- Menu para Organizador -->
                     <li><a href="#">Eventos</a></li>
                     <li><a href="newEvent">Novo Evento</a></li>
-                    <li><a href="/logout" class="btnLogout">Sair</a></li>
+                    <li><a href="/logout">Sair</a></li>
                 <?php else: ?>
                     <!-- Menu para Utilizadores -->
                     <li><a href="#">Eventos</a></li>
-                    <li><a href="/logout" class="btnLogout">Sair</a></li>
+                    <li><a href="/logout">Sair</a></li>
                 <?php endif; ?>
             </ul>
         </nav>  

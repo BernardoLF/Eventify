@@ -14,7 +14,7 @@ class Connection{
                 self::$instance = new PDO(
                     dsn: 'mysql:host=localhost; dbname=controlo_eventos', // Fonte de dados
                     username: 'root', // Nome de usuário do banco de dados
-                    password: 'Messi8', // Senha do banco de dados
+                    password: 'ShadowKnight1305+', // Senha do banco de dados
                     options: [
                         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Modo de erro
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // Modo de busca padrão

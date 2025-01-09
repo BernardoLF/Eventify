@@ -16,9 +16,11 @@
                     <li><a href="dashboard">Eventos</a></li>
                     <li><a href="#">Novo Evento</a></li>
                     <li><a href="utilizadores">Utilizadores</a></li>
+                    <li><a href="/logout">Sair</a></li>
                 <?php else: ?>
                     <li><a href="dashboard">Eventos</a></li>
                     <li><a href="#">Novo Evento</a></li>
+                    <li><a href="/logout">Sair</a></li>
                 <?php endif; ?>
             </ul>
         </nav>  
