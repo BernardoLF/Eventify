@@ -32,5 +32,13 @@ class dashboardController {
         // Envia os dados para a visão
         require_once './app/views/dashboard.php'; // Carrega a visão do dashboard
     }
+    public function logout(): void {
+        // Remover os  dados da sessão e destruir-la
+        session_unset();
+        session_destroy();
+        // Redireciona para a página inicial ou de login
+        header('Location: /');
+        exit;
+    }
 }
 ?>
