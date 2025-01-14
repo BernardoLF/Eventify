@@ -9,7 +9,11 @@ return[
         'controller' => 'AuthController', // Controlador para registro de usuários
         'action' => 'register' // Ação de registro
     ],
-    'dashboard' => [
+    'historico' => [
+        'controller' => 'RegistoController', // Controlador para registro de usuários
+        'action' => 'RegistoHistorico' // Ação de registro
+    ],
+        'dashboard' => [
         'controller' => 'DashboardController', // Controlador para o painel do usuário
         'action' => 'index' // Ação que exibe o painel
     ],

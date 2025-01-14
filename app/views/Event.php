@@ -22,9 +22,15 @@
             <p><strong>Localização:</strong> <?php echo $evento['localizacao']; ?></p>
         
             <form method="POST">
-                <label><strong>Bilhetes:</strong></label>
-                <input type="number" name="quantidade" min=0 value=0>
-                <button style="margin-right:10px;" type="submit">Comprar Bilhetes</button>
+                <div>
+                <?php if ($evento['capacidade'] === 0): ?>
+                    <span class="aviso">Bilhetes online do evento esgotado!</span>
+                <?php else: ?>
+                    <label><strong>Bilhetes:</strong></label>
+                    <input type="number" name="quantidade" min=0 value=0>
+                    <button type="submit">Comprar Bilhetes</button>
+                <?php endif;?>
+                </div>
             </form>
         </div>
     </div>

@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c4c4c4;
+}
+
+ul { /* Remove os marcadores da lista */
+    display: flex;
+}
+
+ul li {
+    list-style-type: none;
+    margin-left: 5vh;
+    margin-right: 5vh; /* Espaçamento entre os itens do menu */
+    transition: transform 0.3s ease-in-out;
+}
+
+ul a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: #000; /* Cor do texto dos links */
+}
+
+ul li:hover{
+    transform: scale(1.15);
+}
+
+h4{
+    margin-right: 6vh;
+}

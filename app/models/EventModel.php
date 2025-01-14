@@ -84,21 +84,19 @@ class Event {
         return $lastId;
     }
 
-    public function updateEvent($id): bool{
-        // Desativa as restrições de chave estrangeira temporariamente
-        $this->db->exec('SET FOREIGN_KEY_CHECKS=0;');
-
+    public function registo($bilhetes, $id_evento, $id_user): bool{
         // SQL para atualizar o ID do dia associado a um evento
-        $sql = 'UPDATE eventos SET id_days = :id WHERE id = :id';
+        $sql = 'INSERT INTO registo (bilhetes, id_evento, id_user) VALUES (:bilhetes, :id_evento, :id_user)';
 
         // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
 
-        // Reativa as restrições de chave estrangeira
-        $this->db->exec('SET FOREIGN_KEY_CHECKS=1;');
-
         // Executa a atualização do evento
-        return $stmt->execute([':id' => $id]);
+        return $stmt->execute([
+            ':bilhetes' => $bilhetes,
+            ':id_evento' => $id_evento,
+            ':id_user' => $id_user
+        ]);
     }
 
     public function lastInsertId() {

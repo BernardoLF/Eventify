@@ -69,6 +69,15 @@ form{
     margin: 16px 0;
 }
 
+form button{
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+form span{
+    color: red;
+}
+
 @media(max-width:910px){
     .imagem{
         width: 88%;

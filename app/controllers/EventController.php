@@ -18,6 +18,12 @@ class EventController {
             $eventModel = new Event();
             $evento = $eventModel->getEvent(id: $id); // Obtém os detalhes do evento
 
+            if($evento['capacidade'] === 0){
+                $erro = 'Esgotado';
+            } else {
+                $erro = '';
+            }
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Processa a compra de bilhetes
                 $quantidade = $_POST['quantidade'];
@@ -25,11 +31,15 @@ class EventController {
                 $email = $_SESSION['email'];
 
                 if ($quantidade <= 0){
-                    echo 'Quantidade deve ser 1 ou mais bilhetes'; // Mensagem de erro se a quantidade for inválida
-                } else {
+                    $erro = 'Quantidade deve ser 1 ou mais bilhetes'; // Mensagem de erro se a quantidade for inválida
+                } else if($evento['capacidade'] < $quantidade){
+                    $erro = 'Não temos mais que '.$quantidade.' bilhetes.';
+                } else if($evento['capacidade'] >= $quantidade){
                     $resultado = $eventModel->bilhete(quantidade: $quantidade, id: $id); // Registra a compra
-
+                    
                     if($resultado){
+
+                        $registo = $eventModel->registo(bilhetes: $quantidade, id_evento: $id, id_user: $_SESSION['id']);
                         // Mensagem de confirmação da compra
                         $corpoMensagem = <<<MSG
                             Compra dos bilhetes do evento $titulo

@@ -20,7 +20,6 @@ $uri = trim(string: $_SERVER['REQUEST_URI'], characters: '/');
      http_response_code(response_code: 404);
      echo 'Página não encontrada';          
 } */
-
 foreach ($routes as $route => $routeParams) {
     $pattern = '#^' . $route . '$#';
     if (preg_match($pattern, $uri, $matches)) {

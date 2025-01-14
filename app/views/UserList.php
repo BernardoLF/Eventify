@@ -13,7 +13,8 @@
                 <li><a href="dashboard">Eventos</a></li>
                 <li><a href="newEvent">Novo Evento</a></li>
                 <li><a href="#">Utilizadores</a></li>
-                <li><a href="/logout">Sair</a></li>
+                <li><a href="historico">Registo Historico</a></li>
+                <li><a href="logout">Sair</a></li>
             </ul>
         </nav>  
 
