@@ -70,12 +70,6 @@ class EventController {
         } else if(!isset($_SESSION['role_id']) === 2){
             header('Location: /dashboard'); // Redireciona se o usuário não tiver a permissão adequada
         }
-        
-        // Verifica o User-Agent para bloquear dispositivos com largura de tela inferior a 640px
-        if (preg_match('/Mobile|Android|iPhone|iPad|iPod/', $_SERVER['HTTP_USER_AGENT'])) {
-            header('Location: /dashboard'); // Redireciona para o dashboard se o dispositivo for móvel
-            exit;
-        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Processa a criação de um novo evento
@@ -110,39 +104,23 @@ class EventController {
                         }
 
                         $eventModel = new Event();
-                        $resultado = $eventModel->insertEvent(titulo: $titulo, capacidade: $capacidade, localizacao: $localizacao, descricao: $descricao, nome_imagem: $nome_imagem, categoria: $categoria, id_organizador: $_SESSION['id']);
+                        $resultado_hora = $eventModel->insertDataHora(dataInicio: $dataInicio, dataFim: $dataFim, horaInicio: $horaInicio, horaFim: $horaFim);
                         
-                        if ($resultado) {
+                        if ($resultado_hora) {
                             // Insere a data e hora do evento
                             try {
-                                $resultado_hora = $eventModel->insertDataHora(id: $resultado, dataInicio: $dataInicio, dataFim: $dataFim, horaInicio: $horaInicio, horaFim: $horaFim);
+                                $resultado = $eventModel->insertEvent(titulo: $titulo, capacidade: $capacidade, localizacao: $localizacao, descricao: $descricao, id_days:$resultado_hora ,nome_imagem: $nome_imagem, categoria: $categoria, id_organizador: $_SESSION['id']);
 
-                                if($resultado_hora === true){
-                                    // Mensagem de depuração
-                                    var_dump("Data e hora inseridas com sucesso.");
-
-                                    try {
-                                        $resultado_update = $eventModel->updateEvent(id: $resultado);
-
-                                        if($resultado_update === true){
-                                            session_start();
-                                            $_SESSION['success_message'] = "Evento criado com sucesso!"; // Mensagem de sucesso
-                                            header('Location: /dashboard'); // Redireciona para o dashboard
-                                            exit;
-                                        }
-
-                                    } catch (Exception $e) {
-                                        // Tratar erro específico da inserção de data e hora
-                                        var_dump("Ocorreu um erro ao atualizar." . $e->getMessage());
-                                        require_once './app/views/newEvent.php';
-                                        return;
-                                    }
-
+                                if($resultado === true){
+                                    session_start();
+                                    $_SESSION['success_message'] = "Evento criado com sucesso!"; // Mensagem de sucesso
+                                    header('Location: /dashboard'); // Redireciona para o dashboard
+                                    exit;
                                 }
-
+                            
                             } catch (Exception $e) {
                                 // Tratar erro específico da inserção de data e hora
-                                var_dump("Ocorreu um erro ao inserir a data e hora." . $e->getMessage());
+                                var_dump("Ocorreu um erro ao criar o evento." . $e->getMessage());
                                 require_once './app/views/newEvent.php';
                                 return;
                             }
@@ -150,7 +128,7 @@ class EventController {
                         } 
 
                     } catch (Exception $e) {
-                        var_dump("Ocorreu um erro ao criar o evento: " . $e->getMessage());
+                        var_dump("Ocorreu um erro ao inserir data e hora: " . $e->getMessage());
                         require_once './app/views/newEvent.php';
                         return;
                     }

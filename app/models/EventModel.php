@@ -44,17 +44,15 @@ class Event {
         ]);
     }
 
-    public function insertEvent($titulo, $capacidade, $localizacao, $descricao, $nome_imagem, $categoria, $id_organizador): int{
-        // Desativa as restrições de chave estrangeira temporariamente
-        $this->db->exec('SET FOREIGN_KEY_CHECKS=0;');
-
+    public function insertEvent($titulo, $capacidade, $localizacao, $descricao, $id_days, $nome_imagem, $categoria, $id_organizador): bool{
         // SQL para inserir um novo evento
-        $sql = 'INSERT INTO eventos (titulo, descricao, localizacao, capacidade, id_organizador, imagem, id_categoria) VALUES (:titulo, :descricao, :localizacao, :capacidade, :id_organizador, :imagem, :categoria);';
+        $sql = 'INSERT INTO eventos (titulo, descricao, id_days, localizacao, capacidade, id_organizador, imagem, id_categoria) VALUES (:titulo, :descricao, :id_days, :localizacao, :capacidade, :id_organizador, :imagem, :categoria);';
         
         // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
         // Executa a inserção do evento
-        $stmt->execute([
+         return $stmt->execute([
+            ':id_days' => $id_days,
             ':titulo' => $titulo,
             ':capacidade' => $capacidade,
             ':localizacao' => $localizacao,
@@ -63,31 +61,27 @@ class Event {
             ':id_organizador' => $id_organizador,
             ':categoria' => $categoria
         ]);
-
-        // Obtém o último ID inserido
-        $lastId = $this->lastInsertId();
-
-        // Reativa as restrições de chave estrangeira
-        $this->db->exec('SET FOREIGN_KEY_CHECKS=1;');
-
-        // Retorna o último ID inserido
-        return $lastId;
     }
 
-    public function insertDataHora($id, $dataInicio, $horaInicio, $dataFim, $horaFim): bool{
+    public function insertDataHora($dataInicio, $horaInicio, $dataFim, $horaFim): int{
         // SQL para inserir dados de data e hora para um evento
-        $sql = 'INSERT INTO data_hora (id, data_inicio, data_encerramento, hora_abertura, hora_encerramento) VALUES (:id, :data_inicio, :data_fim, :hora_inicio, :hora_fim);';
+        $sql = 'INSERT INTO data_hora (data_inicio, data_encerramento, hora_abertura, hora_encerramento) VALUES (:data_inicio, :data_fim, :hora_inicio, :hora_fim);';
         
         // Prepara a consulta SQL
         $stmt = $this->db->prepare($sql);
         // Executa a inserção dos dados de data e hora
-        return $stmt->execute([
-            ':id' => $id,
+        $stmt->execute([
+            /* ':id' => $id, */
             ':data_inicio' => $dataInicio,
             ':data_fim' => $dataFim,
             ':hora_inicio' => $horaInicio,
             ':hora_fim' => $horaFim,
         ]);
+
+        // Obtém o último ID inserido
+        $lastId = $this->lastInsertId();
+
+        return $lastId;
     }
 
     public function updateEvent($id): bool{

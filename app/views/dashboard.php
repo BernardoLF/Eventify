@@ -10,7 +10,8 @@
     
     <header>
         <nav>
-            <ul>
+                
+            <ul class="menu">
                 <?php if ($_SESSION['role_id'] === 3): ?>
                     <!-- Menu para Admin -->
                     <li><a href="#">Eventos</a></li>
