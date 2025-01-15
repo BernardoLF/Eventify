@@ -7,7 +7,34 @@
     <link rel="stylesheet" href="../css/event.css">
 </head>
 <body>
-    <button class="btn-back" onclick="history.back()">Back</button>
+<header>
+        <nav>
+                
+            <ul class="menu">
+                <?php if ($_SESSION['role_id'] === 3): ?>
+                    <!-- Menu para Admin -->
+                    <li><a href="../dashboard">Eventos</a></li>
+                    <li><a href="../newEvent">Novo Evento</a></li>
+                    <li><a href="../utilizadores">Utilizadores</a></li>
+                    <li><a href="../historico">Registo Historico</a></li>
+                    <li><a href="../logout">Sair</a></li>
+                <?php elseif ($_SESSION['role_id'] === 1): ?>
+                    <!-- Menu para Organizador -->
+                    <li><a href="../dashboard">Eventos</a></li>
+                    <li><a href="../newEvent">Novo Evento</a></li>
+                    <li><a href="../historico">Registo Historico</a></li>
+                    <li><a href="../logout">Sair</a></li>
+                <?php else: ?>
+                    <!-- Menu para Utilizadores -->
+                    <li><a href="../dashboard">Eventos</a></li>
+                    <li><a href="../historico">Registo Historico</a></li>
+                    <li><a href="../logout">Sair</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>  
+
+        <h4>Olá, <?php echo htmlspecialchars($_SESSION['nome'] ?? 'Utilizador'); ?>!</h1>
+    </header>
 
     <div class="container">
         <div class="lado-esquerdo">

@@ -21,7 +21,7 @@
         <h4>Olá, <?php echo htmlspecialchars($_SESSION['nome'] ?? 'Utilizador'); ?>!</h1>
     </header>
 
-<div class="user-list">
+<div class="list">
     <h2>Lista de Utilizadores</h2>
     <div>
     <table>

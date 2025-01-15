@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/historico.css">
+    <link rel="stylesheet" href="./css/user_list.css">
     <title>Registo Historico</title>
 </head>
 <body>
@@ -13,21 +13,21 @@
             <ul class="menu">
                 <?php if ($_SESSION['role_id'] === 3): ?>
                     <!-- Menu para Admin -->
-                    <li><a href="#">Eventos</a></li>
+                    <li><a href="dashboard">Eventos</a></li>
                     <li><a href="newEvent">Novo Evento</a></li>
                     <li><a href="utilizadores">Utilizadores</a></li>
-                    <li><a href="historico">Registo Historico</a></li>
+                    <li><a href="#">Registo Historico</a></li>
                     <li><a href="logout">Sair</a></li>
                 <?php elseif ($_SESSION['role_id'] === 1): ?>
                     <!-- Menu para Organizador -->
-                    <li><a href="#">Eventos</a></li>
+                    <li><a href="dashboard">Eventos</a></li>
                     <li><a href="newEvent">Novo Evento</a></li>
-                    <li><a href="historico">Registo Historico</a></li>
+                    <li><a href="#">Registo Historico</a></li>
                     <li><a href="logout">Sair</a></li>
                 <?php else: ?>
                     <!-- Menu para Utilizadores -->
-                    <li><a href="#">Eventos</a></li>
-                    <li><a href="historico">Registo Historico</a></li>
+                    <li><a href="dashboard">Eventos</a></li>
+                    <li><a href="#">Registo Historico</a></li>
                     <li><a href="logout">Sair</a></li>
                 <?php endif; ?>
             </ul>
@@ -36,14 +36,14 @@
         <h4>Olá, <?php echo htmlspecialchars($_SESSION['nome'] ?? 'Utilizador'); ?>!</h1>
     </header>
 
-<main>
+<div class="list" >
     <h2>Registo Histórico</h2>
     <table>
         <thead>
             <tr>
                 <th>Nome do Evento</th>
                 <th>Nome do Utilizador</th>
-                <th>Bilhete</th>
+                <th>Bilhetes</th>
                 <th>Hora do registo</th>
                 <th>Data do registo</th>
             </tr>
@@ -80,7 +80,7 @@
     <?php endif; ?>
     </tbody>
     </table>
-</main>
+</div>
 
 </body>
 </html>
