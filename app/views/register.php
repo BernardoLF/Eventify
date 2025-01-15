@@ -10,11 +10,11 @@
     <form method="POST">
         <div>
             <label>Nome Completo:</label>
-            <input type="text" id="nome" name="nome" placeholder="Introduza o seu nome" required>
+            <input type="text" id="nome" name="nome" placeholder="Introduza o seu nome" value="<?php echo isset($_POST['nome']) ? htmlspecialchars($_POST['nome']) : ''; ?>" required>
         </div>
         <div>
             <label>Email:</label>
-            <input type="email" id="email" name="email" placeholder="Introzuda o seu email" required>
+            <input type="email" id="email" name="email" placeholder="Introzuda o seu email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
         </div>
         <div>
             <label>Senha:</label>
