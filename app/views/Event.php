@@ -43,7 +43,7 @@
         </div>
 
         <div class="lado-direito">
-            <p><strong>Descrição:</strong> <?php echo $evento['descricao']; ?></p>
+            <p class="descricao"><strong>Descrição:</strong> <?php echo $evento['descricao']; ?></p>
             <p><strong>Data:</strong> <?php echo date('d/m/Y', strtotime($evento['data_inicio'])); ?> - <?php echo date('d/m/Y', strtotime($evento['data_encerramento']));?></p>
             <p><strong>Hora:</strong> <?php echo date('H:i', strtotime($evento['hora_abertura'])); ?> - <?php echo date('H:i', strtotime($evento['hora_encerramento'])); ?></p>
             <p><strong>Localização:</strong> <?php echo $evento['localizacao']; ?></p>

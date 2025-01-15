@@ -73,20 +73,10 @@ h4{
     justify-content:center ;
 }
 
-.btn-back {
-    position: relative; /* Permite o uso de top e left */
-    bottom: 15%; /* Ajuste a posição vertical conforme necessário */
-    right: 40%; /* Ajuste a posição horizontal conforme necessário */
-    padding: 10px 15px; /* Estilo do botão */
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: white; /* Cor do texto */
-    border: none; /* Remove borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
-}
-
-.btn-back:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+.lado-direito .descricao{
+    max-width: 250px;
+    white-space: normal; /* Permite a quebra de linha automática */
+    word-wrap: break-word; /* Quebra palavras muito grandes, se necessário */
 }
 
 input{
